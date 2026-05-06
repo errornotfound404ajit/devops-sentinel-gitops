@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentinel-deployment
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: sentinel
+
+  template:
+    metadata:
+      labels:
+        app: sentinel
+
+    spec:
+      containers:
+      - name: sentinel-container
+        image: ajity279/sentinel-ai:v1
+
+        ports:
+        - containerPort: 5000
