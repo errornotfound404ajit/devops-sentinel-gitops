@@ -22,6 +22,14 @@ jobs:
     - name: Build Docker Image
       run: |
         docker build -t ${{ secrets.DOCKER_USERNAME }}/sentinel-ai:v2 .
+    
+    - name: OWASP Dependency Check
+      uses: dependency-check/Dependency-Check_Action@main
+      with:
+        project: 'sentinel-ai'
+        path: '.'
+        format: 'HTML'
+
 
     - name: Run Trivy Vulnerability Scanner
       uses: aquasecurity/trivy-action@master
